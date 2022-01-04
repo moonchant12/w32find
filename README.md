@@ -15,6 +15,6 @@ import "github.com/moonchant12/w32find"
 
 ## Usage
 ```Go
-hwnd1, err1 := FindWindowFromEnum("Your parent window title")
-hwnd2, err2 := FindWindowEx(hwnd1, 0, "", "Your child window title")
+hwnd1, err1 := w32find.FindWindowFromEnum("Your parent window title")
+hwnd2, err2 := w32find.FindWindowEx(hwnd1, 0, "", "Your child window title")
 ```
