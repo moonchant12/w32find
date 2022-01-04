@@ -62,9 +62,9 @@ func FindWindowExW(hwndParent, hwndChildAfter syscall.Handle, className, windowN
 	return syscall.Handle(ret)
 }
 
-// FindWindowFromEnum finds a window from user32!EnumWindows().
+// FindWindowFromEnum finds a window from user32!EnumWindows(). This can be used to find dialogs.
 //
-// 	h1, err1 := FindWindowFromEnum("Your parent window title")
+// 	h1, err1 := w32find.FindWindowFromEnum("Your parent window title")
 //
 func FindWindowFromEnum(title string) (syscall.Handle, error) {
 	var hwnd syscall.Handle
@@ -88,9 +88,10 @@ func FindWindowFromEnum(title string) (syscall.Handle, error) {
 	return hwnd, nil
 }
 
-// FindWindow finds hwnd by name.
+// FindWindow finds hwnd by name. This can't find all types of windows.
+// For dialogs and controls, use FindWindowEx and FindWindowFromEnum instead.
 //
-// 	hwnd := FindWindow(nil, "Your window title")
+// 	hwnd, _ := w32find.FindWindow("", "Your window title")
 //
 func FindWindow(className, windowName string) (syscall.Handle, error) {
 	var (
@@ -118,9 +119,9 @@ func FindWindow(className, windowName string) (syscall.Handle, error) {
 	return h, nil
 }
 
-// FindWindowEx finds a child window.
+// FindWindowEx finds a child window. This can be used to find controls inside a window.
 //
-// 	h2, err2 := FindWindowEx(h1, 0, "", "Your child window title")
+// 	h2, err2 := w32find.FindWindowEx(h1, 0, "", "Your child window title")
 //
 func FindWindowEx(hwndParent, hwndChildAfter syscall.Handle, className, windowName string) (syscall.Handle, error) {
 	var (
