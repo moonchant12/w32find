@@ -89,7 +89,7 @@ func FindWindowFromEnum(title string) (syscall.Handle, error) {
 }
 
 // FindWindow finds hwnd by name. This can't find all types of windows.
-// For dialogs and controls, use FindWindowEx and FindWindowFromEnum instead.
+// For dialogs and controls, use FindWindowFromEnum and FindWindowEx instead.
 //
 // 	hwnd, _ := w32find.FindWindow("", "Your window title")
 //
